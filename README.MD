@@ -42,26 +42,18 @@ Criar duas aplicações com rotas específicas, implementar cache com tempos de 
 
 &nbsp;
 
-# Prática
-
-Decidi fazer na cloud pessoal por questões de praticidade mesmo, para não precisar provisonar nada na nuvem da Globo, nem lidar com permissionamento avançado etc.
-
-Escolhi a AWS por já conter uma conta e facilitar o billing.
-
-&nbsp;
-
-**🎯 O que será implementado:**
+# Proposta de solução:
 
 **Aplicações:**
 
-&nbsp;       1 - **Healthcheck** em **python**, retornando um texto fixo ("Estou vivo!").  
-        2 - Horário do servidor em **bash,** retornando o horário atual
+&nbsp;       1 - **Healthcheck** em **python**, retornando um texto fixo ("Servidor OK!").  
+        2 - Horário do servidor em **node.js,** retornando o horário local.
 
 **Infraestrutura:**
 
-&nbsp;       Servidor na EC2 com **Ansible** e **Terraform** instalado para:  
-               1 - Implantar uma infraestrutura de cluster no **Kubernetes**;  
-                2 - Manter um deployment contínuo via **Ansible**
+&nbsp;       Servidor na EC2 com **Terraform** instalado para:
+
+&nbsp;               1 - Implantar infraestrutura de cluster no **Kubernetes**;
 
 **Cache:**
 
@@ -75,6 +67,20 @@ Escolhi a AWS por já conter uma conta e facilitar o billing.
 
 &nbsp;       Ainda em construção **🚧**
 
-&nbsp;**Próximos passos**
+**Próximos passos**       
 
-&nbsp;       Ainda em construção 🚧
+&nbsp;       **Melhoria no mostrador de horário do servidor:**
+
+&nbsp;               - Ajustar o cache para que atualize com uma frequência maior, ex: de 5 em 5 segundos
+
+&nbsp;               - Ou até mesmo atualizar as horas dinamicamente.
+
+&nbsp;
+
+# Prática
+
+&nbsp;
+
+Instalação do npm através do comando `sudo apt install nodejs npm` 
+
+&nbsp;
