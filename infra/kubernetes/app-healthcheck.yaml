@@ -1,0 +1,39 @@
+# Deployment da Aplicação Healthcheck
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-healthcheck
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthcheck
+  template:
+    metadata:
+      labels:
+        app: healthcheck
+    spec:
+      containers:
+        - name: healthcheck
+          image: 982081088799.dkr.ecr.us-east-1.amazonaws.com/app-healthcheck:latest  # Meu repositório ECR
+          ports:
+            - containerPort: 5000
+
+---
+
+# Service da Aplicação Healthcheck
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-healthcheck-service
+spec:
+  selector:
+    app: healthcheck
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP
+

@@ -1,0 +1,39 @@
+# Deployment da Aplicação Hora do Servidor
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-hora
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hora
+  template:
+    metadata:
+      labels:
+        app: hora
+    spec:
+      containers:
+        - name: hora
+          image: 982081088799.dkr.ecr.us-east-1.amazonaws.com/app-mostrador-horas:latest  # Meu repositório ECR
+          ports:
+            - containerPort: 5001
+  
+---
+
+# Service da Aplicação Hora
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-hora-service
+spec:
+  selector:
+    app: hora
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5001
+  type: ClusterIP
+
