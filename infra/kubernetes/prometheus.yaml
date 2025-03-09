@@ -1,5 +1,4 @@
-# Deploy do Prometheus e Node Exporter
-
+# Deployment do Prometheus
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,7 +25,9 @@ spec:
         - name: prometheus-config
           configMap:
             name: prometheus-config
+
 ---
+# Deployment do Node Exporter
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,30 +47,37 @@ spec:
           image: prom/node-exporter:v1.3.1
           ports:
             - containerPort: 9100
+
 ---
+# Service para Prometheus
 apiVersion: v1
 kind: Service
 metadata:
   name: prometheus
 spec:
-  ports:
-    - port: 9090
   selector:
     app: prometheus
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090
+
 ---
+# Service para Node Exporter
 apiVersion: v1
 kind: Service
 metadata:
   name: node-exporter
 spec:
-  ports:
-    - port: 9100
   selector:
     app: node-exporter
+  ports:
+    - protocol: TCP
+      port: 9100
+      targetPort: 9100
 
-
-# Configuração do Prometheus
-
+---
+# ConfigMap do Prometheus
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -78,7 +86,6 @@ data:
   prometheus.yml: |
     global:
       scrape_interval: 15s
-
     scrape_configs:
       - job_name: 'node'
         static_configs:
