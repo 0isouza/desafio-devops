@@ -56,14 +56,13 @@ data:
           proxy_cache_valid 200 1m;
         }
         
-        location /grafana/ {
-            proxy_pass http://grafana:3000/;
+        location /grafana {
+          proxy_pass http://grafana:3000;
         }
 
-        location /prometheus/ {
-            proxy_pass http://prometheus:9090/;
-
-      }
+        location /prometheus {
+          proxy_pass http://prometheus:9090;
+        }
     }
 
 ---
