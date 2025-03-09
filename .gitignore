@@ -1,4 +1,5 @@
 .*
+!.github/
 *.json
 chave-desafio
 chave-desafio.pub
