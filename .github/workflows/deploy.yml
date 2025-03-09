@@ -54,6 +54,6 @@ jobs:
 
       - name: Aplicar manifestos Kubernetes
         run: |
-          aws eks update-kubeconfig --name cloudmart
+          aws eks update-kubeconfig --name cluster-desafio --region us-east-1
           kubectl apply -f infra/kubernetes
 
