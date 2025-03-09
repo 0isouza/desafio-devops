@@ -57,6 +57,16 @@ jobs:
         run: |
           aws eks update-kubeconfig --name cluster-desafio --region us-east-1
 
-      - name: Aplicar manifestos Kubernetes
+      - name: Aplicar manifestos Kubernetes e forçar restart
         run: |
           kubectl apply -f infra/kubernetes
+          
+          # Força o rollout para garantir que os pods sejam atualizados
+          kubectl rollout restart deployment/app-healthcheck
+          kubectl rollout restart deployment/app-hora          
+
+          # Verifica o status do rollout
+          kubectl rollout status deployment/app-healthcheck
+          kubectl rollout status deployment/app-hora
+
+
