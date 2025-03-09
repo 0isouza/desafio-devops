@@ -53,5 +53,7 @@ jobs:
           chmod 600 ~/.kube/config  # Ajusta as permissões por segurança
 
       - name: Aplicar manifestos Kubernetes
-        run: kubectl apply -f infra/kubernetes
+        run: |
+          aws eks update-kubeconfig --name cloudmart
+          kubectl apply -f infra/kubernetes
 
