@@ -1,0 +1,20 @@
+# Dockerfile do app healthcheck
+
+# Imagem base python
+FROM python:3.9
+
+# Diretório de trabalho no container
+WORKDIR /usr/src/app
+
+# Copia todos os arquivos para o container
+COPY . .
+
+# Instalar dependências
+RUN pip install -r requirements.txt
+
+# Expor a porta 5000
+EXPOSE 5000
+
+# Rodar a aplicação
+CMD ["python", "healthcheck.py"]
+

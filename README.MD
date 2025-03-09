@@ -46,8 +46,8 @@ Criar duas aplicações com rotas específicas, implementar cache com tempos de 
 
 **Aplicações:**
 
-&nbsp;       1 - **Healthcheck** em **python**, retornando um texto fixo ("Servidor OK!").  
-        2 - Horário do servidor em **node.js,** retornando o horário local.
+&nbsp;       1 - **Healthcheck** em **Python + Flask**, retornando um texto fixo ("Servidor OK!").  
+        2 - Horário do servidor em **JavaScript + Node.js****,** retornando o horário local.
 
 **Infraestrutura:**
 
@@ -67,7 +67,7 @@ Criar duas aplicações com rotas específicas, implementar cache com tempos de 
 
 &nbsp;       Ainda em construção **🚧**
 
-**Próximos passos**       
+**Próximos passos**
 
 &nbsp;       **Melhoria no mostrador de horário do servidor:**
 
@@ -81,6 +81,63 @@ Criar duas aplicações com rotas específicas, implementar cache com tempos de 
 
 &nbsp;
 
-Instalação do npm através do comando `sudo apt install nodejs npm` 
+### Passo 1: Desenvolver as aplicações e rodar localmente:
+
+Instalação das dependências da app de **healthcheck**:
+
+1.  Instalação do **flask**, que servirá o app via web: `pip install Flask`
+2.  Rodar o app localmente: `python3 healthcheck.py`
+
+&nbsp;
+
+Instalação das dependências da app **mostrador de** horas:
+
+1.  Instalação do **nodejs** e **npm** através do comando `sudo apt install nodejs npm`
+2.  Instalação do **express**, que servirá o app via web: `npm install express`
+3.  Iniciar o projeto através do `npm init -y`
+4.  Rodar o app: `node index.js`
+
+&nbsp;
+
+### Passo 2: Implantar as aplicações usando Docker
+
+1.  Instalar Docker na máquina na EC2: `sudo apt-get install docker.io`
+2.  Garantir as permissões do Docker para o user atual: `sudo usermod -a -G docker $(whoami)`
+3.  Aplicar as permissões de grupo sem deslogar: `newgrp docker`
+
+&nbsp;
+
+**App healthcheck**
+
+1.  Criar arquivo **dockerfile**
+    
+2.  Construir a imagem docker: `docker build -t app-healthcheck .`
+    
+3.  Executar a imagem criada: `docker run -d -p 5000:5000 app-healthcheck`.
+    
+
+&nbsp;       Primeira aplicação rodando na porta 5000
+
+&nbsp;       [imagem]
+
+**App mostrador de hora**
+
+1.  Criar arquivo **dockerfile**
+2.  Construir a imagem docker: `docker build -t app-mostrador-horas .`
+3.  Executar a imagem criada: `docker run -d -p 5001:5001 app-mostrador-horas`.
+
+&nbsp;       Segunda aplicação rodando na porta 5001.
+
+&nbsp;       [imagem]
+
+&nbsp;
+
+### Passo 3: Orquestrar containers em um cluster do Kubernetes
+
+&nbsp;
+
+Antes do nginx:
+
+[imagem]
 
 &nbsp;

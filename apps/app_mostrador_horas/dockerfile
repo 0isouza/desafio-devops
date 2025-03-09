@@ -1,0 +1,24 @@
+# Imagem base Node.js
+FROM node:lts
+
+# Diretório de trabalho no container
+WORKDIR /usr/src/app
+
+# Copia o package.json e o package-lock.json
+COPY package*.json ./
+
+# Se os arquivos .json não existem ainda, o Dockerfile vai
+# criar um package.json básico, através do npm init.
+RUN if [ ! -f package.json ]; then npm init -y; fi
+
+# Instala as dependências (express)
+RUN npm install express
+
+# Copia o restante dos arquivos da aplicação
+COPY . .
+
+# Expõe a porta que o express irá utilizar
+EXPOSE 5001
+
+# Rodar o comando para iniciar a aplicação
+CMD ["node", "index.js"]

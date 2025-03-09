@@ -1,7 +1,7 @@
 // Importa o módulo express
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 5001;
 
 // Rota para retornar a hora atual do servidor
 app.get('/hora', (req, res) => {
