@@ -27,14 +27,14 @@ jobs:
       - name: Build e Push da aplicação Healthcheck
         run: |
           IMAGE_TAG=latest
-          docker build -t app-healthcheck:$IMAGE_TAG ./app-healthcheck
+          docker build -t app-healthcheck:$IMAGE_TAG ./apps/app_healthcheck
           docker tag app-healthcheck:$IMAGE_TAG ${{ secrets.ECR_REPO_HEALTHCHECK }}:$IMAGE_TAG
           docker push ${{ secrets.ECR_REPO_HEALTHCHECK }}:$IMAGE_TAG
 
       - name: Build e Push da aplicação Mostrador de Horas
         run: |
           IMAGE_TAG=latest
-          docker build -t app-mostrador-horas:$IMAGE_TAG ./app-mostrador-horas
+          docker build -t app-mostrador-horas:$IMAGE_TAG ./app/app_mostrador_horas
           docker tag app-mostrador-horas:$IMAGE_TAG ${{ secrets.ECR_REPO_MOSTRADOR_HORAS }}:$IMAGE_TAG
           docker push ${{ secrets.ECR_REPO_MOSTRADOR_HORAS }}:$IMAGE_TAG
 
