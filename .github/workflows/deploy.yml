@@ -27,7 +27,7 @@ jobs:
       - name: Build e Push da aplicação Healthcheck
         run: |
           IMAGE_TAG=latest
-          docker build -t app-healthcheck:$IMAGE_TAG ./apps/app_healthcheck
+          docker build -t app-healthcheck:$IMAGE_TAG ./app/app_healthcheck
           docker tag app-healthcheck:$IMAGE_TAG ${{ secrets.ECR_REPO_HEALTHCHECK }}:$IMAGE_TAG
           docker push ${{ secrets.ECR_REPO_HEALTHCHECK }}:$IMAGE_TAG
 
