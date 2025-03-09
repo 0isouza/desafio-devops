@@ -48,8 +48,10 @@ jobs:
 
       - name: Configurar acesso ao Kubernetes
         run: |
+          mkdir -p ~/.kube
           echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > ~/.kube/config
+          chmod 600 ~/.kube/config  # Ajusta as permissões por segurança
 
       - name: Aplicar manifestos Kubernetes
-        run: kubectl apply -f infra/k8s
+        run: kubectl apply -f infra/kubernetes
 
