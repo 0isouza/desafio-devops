@@ -1,85 +1,77 @@
 # Deployment do Nginx (Proxy Reverso + Cache)
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-proxy
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx-proxy
-  template:
-    metadata:
-      labels:
-        app: nginx-proxy
-    spec:
-      containers:
-        - name: nginx
-          image: nginx:latest
-          volumeMounts:
-            - name: nginx-config
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-      volumes:
-        - name: nginx-config
-          configMap:
-            name: nginx-config
-
----
-
-# ConfigMap do Nginx (Cache para as Aplicações)
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: nginx-config
-data:
-  nginx.conf: |
-    worker_processes 1;
-    events { worker_connections 1024; }
-
-    http {
-      proxy_cache_path /tmp/cache levels=1:2 keys_zone=my_cache:10m max_size=100m inactive=60m use_temp_path=off;
-      server {
-        listen 80;
-
-        location /healthcheck {
-          proxy_pass http://app-healthcheck-service;
-          proxy_cache my_cache;
-          proxy_cache_valid 200 10s;
-        }
-
-        location /hora {
-          proxy_pass http://app-hora-service;
-          proxy_cache my_cache;
-          proxy_cache_valid 200 1m;
-        }
-        
-        location /grafana {
-          proxy_pass http://grafana:3000;
-        }
-
-        location /prometheus {
-          proxy_pass http://prometheus:9090;
-        }
-    }
-
----
-
-# Service do Nginx
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service
-spec:
-  selector:
-    app: nginx-proxy
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: LoadBalancer
-
-
+ 
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: nginx-proxy
+ spec:
+   replicas: 1
+   selector:
+     matchLabels:
+       app: nginx-proxy
+   template:
+     metadata:
+       labels:
+         app: nginx-proxy
+     spec:
+       containers:
+         - name: nginx
+           image: nginx:latest
+           volumeMounts:
+             - name: nginx-config
+               mountPath: /etc/nginx/nginx.conf
+               subPath: nginx.conf
+       volumes:
+         - name: nginx-config
+           configMap:
+             name: nginx-config
+ 
+ ---
+ 
+ # ConfigMap do Nginx (Cache para as Aplicações)
+ 
+ apiVersion: v1
+ kind: ConfigMap
+ metadata:
+   name: nginx-config
+ data:
+   nginx.conf: |
+     worker_processes 1;
+     events { worker_connections 1024; }
+ 
+     http {
+       proxy_cache_path /tmp/cache levels=1:2 keys_zone=my_cache:10m max_size=100m inactive=60m use_temp_path=off;
+       server {
+         listen 80;
+ 
+         location /healthcheck {
+           proxy_pass http://app-healthcheck-service;
+           proxy_cache my_cache;
+           proxy_cache_valid 200 10s;
+         }
+ 
+         location /hora {
+           proxy_pass http://app-hora-service;
+           proxy_cache my_cache;
+           proxy_cache_valid 200 1m;
+         }
+       }
+     }
+ 
+ ---
+ 
+ # Service do Nginx
+ 
+ apiVersion: v1
+ kind: Service
+ metadata:
+   name: nginx-service
+ spec:
+   selector:
+     app: nginx-proxy
+   ports:
+     - protocol: TCP
+       port: 80
+       targetPort: 80
+   type: LoadBalancer
+ 
