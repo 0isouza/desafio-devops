@@ -1,12 +1,8 @@
 # **Desafio Prático – Analista DevOps Pleno**
 
-&nbsp;
+**Objetivo**
 
-# Objetivo
-
-Criar duas aplicações com rotas específicas, implementar cache com tempos de expiração diferentes, automatizar a infraestrutura, criar um diagrama arquitetural e sugerir melhorias, com o código e configurações armazenados em um repositório para avaliação.
-
-&nbsp;
+Este desafio visa explorar os limites de desenvolvimento de e implementação de soluções DevOps, desafiando o analista a desenvolver com sucesso duas aplicações em linguagens diferentes, implementando cache, observabilidade e automação de infraestrutura. A entrega deve conter o código-fonte e diagrama da infraestrutura.
 
 # Tarefas
 
@@ -42,102 +38,28 @@ Criar duas aplicações com rotas específicas, implementar cache com tempos de 
 
 &nbsp;
 
-# Proposta de solução:
+# Estrutura do projeto e detalhamento da solução
+
+**Estrutura do projeto:** O projeto será estruturado em dois principais diretórios: apps/ e infra/**.** O diretório **apps** conterá as aplicações e seus respectivos arquivos de configuração. A pasta **infra** abrangerá os arquivos para provisionamento da infraestrutura como código e também os deployments das aplicações desenvolvidas e ferramentas de observabilidade. O diretório **.github** terá o workflow definidos para automação CI/CD.
+
+&nbsp;       ![467de202c5bc4a831177f7e036dcc36d.png](_resources/467de202c5bc4a831177f7e036dcc36d.png)
 
 **Aplicações:**
 
-&nbsp;       1 - **Healthcheck** em **Python + Flask**, retornando um texto fixo ("Servidor OK!").  
-        2 - Horário do servidor em **JavaScript + Node.js****,** retornando o horário local.
+1.  Aplicação que retorna um **healthcheck** do servidor em **Python + Flask**, retornando um texto fixo ("Servidor OK!").
+2.  Horário do servidor em **JavaScript + Node.js**, retornando o horário local.
 
 **Infraestrutura:**
 
-&nbsp;       Servidor na EC2 com **Terraform** instalado para:
-
-&nbsp;               1 - Implantar infraestrutura de cluster no **Kubernetes**;
+Implantação de um cluster EKS via **Terraform,** que será orquestrado pelo **Kubernetes.**
 
 **Cache:**
 
-&nbsp;       Ainda em construção 🚧
+Implantação do cache e proxy reverso através do **Nginx,** com as configurações orientadas (10s para a primeira aplicação, 1min para a segunda aplicação).
 
 **Observabilidade**:
 
-&nbsp;       1 - Implementação do Prometheus e Grafana para coletar métricas do cluster e da aplicação.  
-        2 - Definição de alerta para monitorar o consumo de CPU e memória da aplicação.  
-<br/>**Desenho da infraestrutura**
-
-&nbsp;       Ainda em construção **🚧**
-
-**Próximos passos**
-
-&nbsp;       **Melhoria no mostrador de horário do servidor:**
-
-&nbsp;               - Ajustar o cache para que atualize com uma frequência maior, ex: de 5 em 5 segundos
-
-&nbsp;               - Ou até mesmo atualizar as horas dinamicamente.
-
-&nbsp;
-
-# Prática
-
-&nbsp;
-
-### Passo 1: Desenvolver as aplicações e rodar localmente:
-
-Instalação das dependências da app de **healthcheck**:
-
-1.  Instalação do **flask**, que servirá o app via web: `pip install Flask`
-2.  Rodar o app localmente: `python3 healthcheck.py`
-
-&nbsp;
-
-Instalação das dependências da app **mostrador de** horas:
-
-1.  Instalação do **nodejs** e **npm** através do comando `sudo apt install nodejs npm`
-2.  Instalação do **express**, que servirá o app via web: `npm install express`
-3.  Iniciar o projeto através do `npm init -y`
-4.  Rodar o app: `node index.js`
-
-&nbsp;
-
-### Passo 2: Implantar as aplicações usando Docker
-
-1.  Instalar Docker na máquina na EC2: `sudo apt-get install docker.io`
-2.  Garantir as permissões do Docker para o user atual: `sudo usermod -a -G docker $(whoami)`
-3.  Aplicar as permissões de grupo sem deslogar: `newgrp docker`
-
-&nbsp;
-
-**App healthcheck**
-
-1.  Criar arquivo **dockerfile**
-    
-2.  Construir a imagem docker: `docker build -t app-healthcheck .`
-    
-3.  Executar a imagem criada: `docker run -d -p 5000:5000 app-healthcheck`.
-    
-
-&nbsp;       Primeira aplicação rodando na porta 5000
-
-&nbsp;       [imagem]
-
-**App mostrador de hora**
-
-1.  Criar arquivo **dockerfile**
-2.  Construir a imagem docker: `docker build -t app-mostrador-horas .`
-3.  Executar a imagem criada: `docker run -d -p 5001:5001 app-mostrador-horas`.
-
-&nbsp;       Segunda aplicação rodando na porta 5001.
-
-&nbsp;       [imagem]
-
-&nbsp;
-
-### Passo 3: Orquestrar containers em um cluster do Kubernetes
-
-&nbsp;
-
-Antes do nginx:
-
-[imagem]
+1.  Prometheus para coletar métricas do servidor e aplicações.
+2.  Grafana para visualização dessas métricas e criar alertas.
 
 &nbsp;
