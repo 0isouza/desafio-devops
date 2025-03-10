@@ -62,6 +62,14 @@ data:
           sub_filter 'href="/' 'href="/prometheus/';
           sub_filter 'src="/' 'src="/prometheus/';
           sub_filter_once off;
+
+          # Repassar o cabeçalho Host original da requisição, evitar erro "origin not allowed"                                
+          proxy_set_header Host $http_host;
+
+          # Outras configurações de cabeçalho
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
         }
 
         location /grafana/ {
@@ -70,6 +78,14 @@ data:
           sub_filter 'href="/' 'href="/grafana/';
           sub_filter 'src="/' 'src="/grafana/';
           sub_filter_once off;
+
+          # Repassar o cabeçalho Host original da requisição, evitar erro "origin not allowed"
+          proxy_set_header Host $http_host;
+
+          # Outras configurações de cabeçalho
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
         }
           
       }
