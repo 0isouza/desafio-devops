@@ -1,8 +1,0 @@
-.*
-!.github/
-*.json
-*.tfstate*
-chave-desafio
-chave-desafio.pub
-chave-ssh-ec2.pem
-apps/app_mostrador_horas/node_modules/
