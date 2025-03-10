@@ -7,7 +7,7 @@ const port = 5001;
 app.get('/hora', (req, res) => {
     const dataAtual = new Date();
     const horaAtual = dataAtual.toLocaleTimeString();
-    res.send(`Hora atual do servidor: ${horaAtual}`);
+    res.send(`Hora atual do servidor (UTC +0): ${horaAtual}`);
 });
 
 // Inicia o servidor

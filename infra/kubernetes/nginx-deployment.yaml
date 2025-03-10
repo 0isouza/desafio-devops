@@ -63,7 +63,7 @@ data:
           sub_filter 'src="/' 'src="/prometheus/';
           sub_filter_once off;
 
-          # Repassar o cabeçalho Host original da requisição, evitar erro "origin not allowed"                                
+          # Repassar o cabeçalho Host original da requisição, evitar erros como "origin not allowed"                                
           proxy_set_header Host $http_host;
 
           # Outras configurações de cabeçalho
@@ -79,7 +79,7 @@ data:
           sub_filter 'src="/' 'src="/grafana/';
           sub_filter_once off;
 
-          # Repassar o cabeçalho Host original da requisição, evitar erro "origin not allowed"
+          # Repassar o cabeçalho Host original da requisição, evitar erros como "origin not allowed"
           proxy_set_header Host $http_host;
 
           # Outras configurações de cabeçalho
