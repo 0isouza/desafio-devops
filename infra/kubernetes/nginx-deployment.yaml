@@ -55,6 +55,23 @@ data:
           proxy_cache my_cache;
           proxy_cache_valid 200 1m;
         }
+        
+        location /prometheus/ {
+          proxy_pass http://prometheus-service/;
+          proxy_redirect / /prometheus/;
+          sub_filter 'href="/' 'href="/prometheus/';
+          sub_filter 'src="/' 'src="/prometheus/';
+          sub_filter_once off;
+        }
+
+        location /grafana/ {
+          proxy_pass http://grafana-service/;
+          proxy_redirect / /grafana/;
+          sub_filter 'href="/' 'href="/grafana/';
+          sub_filter 'src="/' 'src="/grafana/';
+          sub_filter_once off;
+        }
+          
       }
     }
 
