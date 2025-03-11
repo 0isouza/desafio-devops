@@ -1,3 +1,13 @@
+# Documentação - Desenho da Infraestrutura
+
+A arquitetura apresenta um cluster EKS rodando aplicações, monitorado com Prometheus e Grafana, usando Nginx para rotear tráfego e uma pipeline CI/CD para automatizar deploys, com infraestrutura gerenciada pelo Terraform e armazenado na AWS.
+
+![b9908baa6d6e36d242630c824c122566.png](../_resources/b9908baa6d6e36d242630c824c122566.png)
+
+# Documentação - Pipeline CI/CD: Atualização de componentes do código/infra
+
+![5a992ddd2b1fe264608b69f2f4346228.png](../_resources/5a992ddd2b1fe264608b69f2f4346228.png)
+
 # Documentação - Prática das atividades realizadas
 
 ### Passo 1: Desenvolver as aplicações e rodar localmente:
@@ -110,11 +120,11 @@ Saída do `kubectl apply -f .`:
 
 Configuração das secrets:
 
-**<img src="../_resources/37cc23421c263711831046cefd3ecf98.png" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303">**
+**<img src="../_resources/37cc23421c263711831046cefd3ecf98.png" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
 
 Deploys automatizados:
 
-**<img src="../_resources/5b3cff1632e0d5c37e8dfb962a4682df.png" alt="5b3cff1632e0d5c37e8dfb962a4682df.png" width="703" height="330">**
+![325beab2c9eeddab914aff3309479891.png](../_resources/325beab2c9eeddab914aff3309479891.png)
 
 &nbsp;
 
@@ -125,11 +135,7 @@ Deploys automatizados:
 3.  Implementar ferramentas através do `kubectl apply -f grafana-deployment.yaml` e `kubectl apply -f prometheus-deployment.yaml`
 4.  Se necessário, reiniciar Nginx através do `kubectl rollout restart deployment nginx-proxy`.
 
-&nbsp;
-
-&nbsp;
-
-&nbsp;
+![a68f93f70c0863dbfd5b38a04edc4aa0.png](../_resources/a68f93f70c0863dbfd5b38a04edc4aa0.png)
 
 # Destruir recursos criados
 
