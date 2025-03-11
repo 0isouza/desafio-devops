@@ -4,6 +4,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana
+  labels:
+    app: grafana
 spec:
   replicas: 1
   selector:
@@ -20,31 +22,24 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: GF_SECURITY_ADMIN_USER
-              value: "admin"
-            - name: GF_SECURITY_ADMIN_PASSWORD
-              value: "admin"
-          volumeMounts:
-            - name: grafana-storage
-              mountPath: /var/lib/grafana
-      volumes:
-        - name: grafana-storage
-          emptyDir: {}
-
+            - name: GF_SERVER_ROOT_URL
+              value: "/grafana"
+            - name: GF_USERS_ALLOW_ORG_CREATE
+              value: "false"
+                #- name: GF_SERVER_SERVE_FROM_SUB_PATH
+                #value: "true"
 ---
 
-# Service do Grafana
+# Service do Grafana 
 
 apiVersion: v1
 kind: Service
 metadata:
   name: grafana-service
 spec:
+  ports:
+    - port: 80
+      targetPort: 3000
   selector:
     app: grafana
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 3000
-  type: ClusterIP
 

@@ -28,7 +28,7 @@ spec:
 
 ---
 
-# ConfigMap do Nginx (Cache para as Aplicações)
+# ConfigMap do Nginx (E configuração do cache para as aplicações)
 
 apiVersion: v1
 kind: ConfigMap
@@ -57,37 +57,23 @@ data:
         }
         
         location /prometheus/ {
-          proxy_pass http://prometheus-service/;
-          proxy_redirect / /prometheus/;
-          sub_filter 'href="/' 'href="/prometheus/';
-          sub_filter 'src="/' 'src="/prometheus/';
-          sub_filter_once off;
-
-          # Repassar o cabeçalho Host original da requisição, evitar erros como "origin not allowed"                                
-          proxy_set_header Host $http_host;
-
-          # Outras configurações de cabeçalho
+          proxy_pass http://prometheus-service;
+          proxy_set_header Host $host;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
+          rewrite ^/prometheus(/.*)$ $1 break;
         }
+
 
         location /grafana/ {
-          proxy_pass http://grafana-service/;
-          proxy_redirect / /grafana/;
-          sub_filter 'href="/' 'href="/grafana/';
-          sub_filter 'src="/' 'src="/grafana/';
-          sub_filter_once off;
-
-          # Repassar o cabeçalho Host original da requisição, evitar erros como "origin not allowed"
-          proxy_set_header Host $http_host;
-
-          # Outras configurações de cabeçalho
+          proxy_pass http://grafana-service;
+          proxy_set_header Host $host;
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
+          rewrite ^/grafana(/.*)$ $1 break;
         }
-          
       }
     }
 
