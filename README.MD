@@ -1,8 +1,12 @@
-# **Desafio Prático – Analista DevOps Pleno**
+
+[![CI/CD - Build & Deploy](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml/badge.svg)](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml)
+
+
+# **Desafio Prático – DevOps**
 
 **Objetivo**
 
-Este desafio visa explorar os limites de desenvolvimento de e implementação de soluções DevOps, desafiando o analista a desenvolver com sucesso duas aplicações em linguagens diferentes, implementando cache, observabilidade e automação de infraestrutura. A entrega deve conter o código-fonte e diagrama da infraestrutura.
+Este desafio visa explorar os limites de desenvolvimento e implementação de soluções DevOps, instigando o desenvolvimento de aplicações, implementação de camadas de cache, observabilidade e automação. A entrega deve conter o código-fonte e o diagrama da infraestrutura.
 
 # Tarefas
 
