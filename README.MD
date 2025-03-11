@@ -6,7 +6,7 @@
 
 **Objetivo**
 
-Este desafio visa explorar os limites de desenvolvimento e implementação de soluções DevOps, instigando o desenvolvimento de aplicações, implementação de camadas de cache, observabilidade e automação. A entrega deve conter o código-fonte e o diagrama da infraestrutura.
+Este desafio explora a criatividade e limites da criação de soluções DevOps, instigando o desenvolvimento de aplicações, implementação de camadas de cache, observabilidade e automação. A entrega deve conter o código-fonte e o diagrama da infraestrutura.
 
 # Tarefas
 
