@@ -1,6 +1,4 @@
-
-[![CI/CD - Build & Deploy](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml/badge.svg)](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml)
-
+ [![CI/CD - Build & Deploy](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml/badge.svg) Edit 🖊️](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml)
 
 # **Desafio Prático – DevOps**
 
@@ -46,24 +44,24 @@ Este desafio explora a criatividade e limites da criação de soluções DevOps,
 
 **Estrutura do projeto:** O projeto será estruturado em dois principais diretórios: apps/ e infra/**.** O diretório **apps** conterá as aplicações e seus respectivos arquivos de configuração. A pasta **infra** abrangerá os arquivos para provisionamento da infraestrutura como código e também os deployments das aplicações desenvolvidas e ferramentas de observabilidade. O diretório **.github** terá o workflow definidos para automação CI/CD.
 
-&nbsp;       ![467de202c5bc4a831177f7e036dcc36d.png](_resources/467de202c5bc4a831177f7e036dcc36d.png)
+&nbsp;       ![467de202c5bc4a831177f7e036dcc36d.png](/C:/Users/igbarbos/AppData/Local/Programs/Joplin/resources/app.asar/_resources/467de202c5bc4a831177f7e036dcc36d.png)
 
 **Aplicações:**
 
-1.  Aplicação que retorna um **healthcheck** do servidor em **Python + Flask**, retornando um texto fixo ("Servidor OK!").
-2.  Horário do servidor em **JavaScript + Node.js**, retornando o horário local.
+1.  ✅ Aplicação que retorna um **healthcheck** do servidor em **Python + Flask**, retornando um texto fixo ("Servidor OK!").
+2.  ✅ Horário do servidor em **JavaScript + Node.js**, retornando o horário local.
 
 **Infraestrutura:**
 
-Implantação de um cluster EKS via **Terraform,** que será orquestrado pelo **Kubernetes.**
+✅ Implantação de um cluster EKS via **Terraform,** que será orquestrado pelo **Kubernetes.**
 
 **Cache:**
 
-Implantação do cache e proxy reverso através do **Nginx,** com as configurações orientadas (10s para a primeira aplicação, 1min para a segunda aplicação).
+✅ Implantação do cache e proxy reverso através do **Nginx,** com as configurações orientadas (10s para a primeira aplicação, 1min para a segunda aplicação).
 
 **Observabilidade**:
 
-1.  Prometheus para coletar métricas do servidor e aplicações.
-2.  Grafana para visualização dessas métricas e criar alertas.
+1.  ✅ Prometheus para coletar métricas do servidor e aplicações.
+2.  ✅ Grafana para visualização dessas métricas e criar alertas.
 
 &nbsp;
