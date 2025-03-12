@@ -176,6 +176,28 @@ Destruir infra criada pelo terraform (cluster): `terraform destroy`
 
 &nbsp;
 
+&nbsp;
+
+# Sugestões de melhoria
+
+**1 - Observabilidade das aplicações criadas**
+
+&nbsp;       O uso de Prometheus e Grafana para monitoramento já foi implementado na infraestrutura, mas a configuração da **observabilidade para as aplicações desenvolvidas** aumentaria a da saúde do projeto.
+
+**2 - Testes e Validação**
+
+&nbsp;       Seria interessante incluir testes no pipeline CI/CD, validando se as rotas /healthcheck e /hora continuam funcionando a cada cada deploy. Outro ponto interessante são os **testes de carga e stress** (tanto das aplicações quanto da infraestrutura), para ajudar a identificar gargalos com antecedência.
+
+**3 -  Escalabilidade e Alta Disponibilidade**
+
+&nbsp;       A implementação de políticas de **escalonamento automático** com base na carga de tráfego podem ajudar a  manter as aplicações estáveis. Outro ponto seria a configuração de múltiplas instâncias no Kubernetes, garantindo alta disponibilidade e balanceamento de carga eficiente.
+
+**4 - Ajuste no cache da aplicação de horas**
+
+&nbsp;       Em um cenário onde a rota **/hora** precisasse ser acessada com frequência, seria interessando pensar em legal seria **diminuir o tempo de expiração do cache** (1min pode estar sendo muito), ou até mesmo implementar uma **página dinâmica** para que os usuários tenham acesso as informações atualizadas.
+
+&nbsp;
+
 # Conclusão
 
 Neste desafio, criei uma infraestrutura automatizada e monitorada, utilizando Kubernetes, CI/CD, Prometheus e Grafana. Desenvolvi e containerizei as aplicações, implantei no EKS da AWS, e configurei uma pipeline CI/CD para automação de deployments. A integração do Prometheus e Grafana permitiu monitorar o desempenho do sistema em tempo real, garantindo a visibilidade e saúde do ambiente.
