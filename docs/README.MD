@@ -2,11 +2,11 @@
 
 A arquitetura apresenta um cluster EKS rodando aplicações, monitorado com Prometheus e Grafana, usando Nginx para rotear tráfego e uma pipeline CI/CD para automatizar deploys, com infraestrutura gerenciada pelo Terraform e armazenado na AWS.
 
-![b9908baa6d6e36d242630c824c122566.png](../_resources/b9908baa6d6e36d242630c824c122566.png)
+![b9908baa6d6e36d242630c824c122566.png](../_resources/496606234af8486b810b583275b09895)
 
 # Documentação - Pipeline CI/CD: Atualização de componentes do código/infra
 
-![5a992ddd2b1fe264608b69f2f4346228.png](../_resources/5a992ddd2b1fe264608b69f2f4346228.png)
+![5a992ddd2b1fe264608b69f2f4346228.png](../_resources/ab12b119b0654726b3bcdf4d030bed9b)
 
 # Documentação - Prática das atividades realizadas
 
@@ -79,7 +79,7 @@ app.listen(port, () => {
 
 &nbsp;       Primeira aplicação rodando na porta 5000
 
-&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](../_resources/ed1019887f1124e0206c98bc2b12a8ff.png)
+&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](../_resources/f6eca13826304b5eba01ed61e0b4aa68)
 
 &nbsp;**Implantação do app mostrador de hora**
 
@@ -89,7 +89,7 @@ app.listen(port, () => {
 
 &nbsp;       Segunda aplicação rodando na porta 5001.
 
-&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](../_resources/d04532cc0a70ab6fe2d376ac333745d1.png)
+&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](../_resources/d9a93a1b5d90444d94ea292a3beb15eb)
 
 &nbsp;
 
@@ -105,11 +105,15 @@ app.listen(port, () => {
 
 Saída do `terraform plan`:
 
-![57af7b2d1415d74c45fab4c38e5f683d.png](../_resources/57af7b2d1415d74c45fab4c38e5f683d.png)
+![57af7b2d1415d74c45fab4c38e5f683d.png](../_resources/5dbe193ed0da40aab1050abb528e5d2c)
 
-Saída do `kubectl apply -f .`:
+&nbsp;
 
-![6eb1e48bff85806a19bcdf4bdb4834ff.png](../_resources/6eb1e48bff85806a19bcdf4bdb4834ff.png)
+Conectar ao cluster EKS usando a configuração do kubectl  `aws eks update-kubeconfig --name cluster-desafio`
+
+Saída do `kubectl apply -f .`
+
+![6eb1e48bff85806a19bcdf4bdb4834ff.png](../_resources/ea9a97df7c3c467e94e40c472debbf3e)
 
 &nbsp;
 
@@ -120,24 +124,51 @@ Saída do `kubectl apply -f .`:
 
 Configuração das secrets:
 
-**<img src="../_resources/37cc23421c263711831046cefd3ecf98.png" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
+**<img src="../_resources/36bbdfebb65c4b3c898c9c9da0bccc0d" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
 
 Deploys automatizados:
 
-![325beab2c9eeddab914aff3309479891.png](../_resources/325beab2c9eeddab914aff3309479891.png)
+![325beab2c9eeddab914aff3309479891.png](../_resources/e6b6ec01f505481194070033d094673d)
 
 &nbsp;
 
 **Passo 5: Deploy da observabilidade usando Prometheus + Grafana**
 
-1.  Criação dos arquivos **grafana-deployment.yaml** e **prometheus-deployment.yaml**
-2.  Atualização do **ConfigMap** do Nginx, para mapear o redirecionamento para as ferramentas.
-3.  Implementar ferramentas através do `kubectl apply -f grafana-deployment.yaml` e `kubectl apply -f prometheus-deployment.yaml`
+1.  Criação dos arquivos de confguração (.yaml) em **/infra/monitoramento**, que farão o deployment e configuração das ferramentas
+2.  Atualização do **ConfigMap** do Nginx, para mapear o redirecionamento e garantir que operarão em **subpath**.
+3.  Implementar ferramentas através do `kubectl apply -f .`
 4.  Se necessário, reiniciar Nginx através do `kubectl rollout restart deployment nginx-proxy`.
 
-![a68f93f70c0863dbfd5b38a04edc4aa0.png](../_resources/a68f93f70c0863dbfd5b38a04edc4aa0.png)
+Arquivos para a configuração:  
+..  
+├── monitoramento  
+    │   ├── **grafana-deployment.yaml** -> Deployment do Grafana + grafana-service para expor a ferramenta  
+    │   ├── **prometheus-clusterrole.yaml** -> Permissões necessárias paro o Prometheus acessar recursos dentro do cluster.  
+    │   ├── **prometheus-clusterrolebinding.yaml** -> Associação da ClusterRole a uma conta de serviço (ServiceAccount).  
+    │   ├── **prometheus-configmap.yaml** -> Configuração do Prometheus: fontes de dados,intervalos de scraping, etc.  
+    │   ├── **prometheus-deployment.yaml** -> Deployment do Prometheus  
+    │   ├── **prometheus-kube-state-metrics.yaml** -> Métricas para monitorar a saúde e o desempenho do cluster Kubernetes.  
+    │   ├── **prometheus-node-exporter.yaml** -> Métricas para monitorar o desempenho do hardware dos nós.  
+    │   ├── **prometheus-service.yaml** -> Define o Service que expõe o Prometheus para o cluster   
+    │   └── **prometheus-serviceaccount.yaml** -> ServiceAccount utilizada pelo Prometheus garantindo acesso aos recursos do cluster.
 
-# Destruir recursos criados
+&nbsp;
+
+**Resultado do monitoramento implantado:**
+
+**Alguns Targets coletadas pelo Prometheus**
+
+![837a403ae5ba00dfda3b11baf0f94991.png](../_resources/cae3acc16d9b45d0ad4ca614a6bbc243)
+
+&nbsp;
+
+**Visualização das métricas no Grafana:**
+
+![2648cbcb3394b1d1ce0702a06ab2579b.png](../_resources/ae3e31f8cde04d0b8ca53ce28f68bbd3)
+
+&nbsp;
+
+# Opcional: Destruir recursos criados
 
 Destruir recursos do Kubernetes **antes** de destruir o cluster: `kubectl delete -f .`
 
@@ -145,4 +176,8 @@ Destruir infra criada pelo terraform (cluster): `terraform destroy`
 
 &nbsp;
 
-&nbsp;
+# Conclusão
+
+Neste desafio, criei uma infraestrutura automatizada e monitorada, utilizando Kubernetes, CI/CD, Prometheus e Grafana. Desenvolvi e containerizei as aplicações, implantei no EKS da AWS, e configurei uma pipeline CI/CD para automação de deployments. A integração do Prometheus e Grafana permitiu monitorar o desempenho do sistema em tempo real, garantindo a visibilidade e saúde do ambiente.
+
+O uso do Terraform facilitou o gerenciamento da infraestrutura, enquanto o Nginx assegurou o cache e o roteamento do tráfego. Ao final, o processo resultou em uma solução escalável, automatizada e monitorada, com aprendizado prático em DevOps e Cloud Computing.
