@@ -6,6 +6,8 @@
 
 Este desafio explora a criatividade e limites da criação de soluções DevOps, instigando o desenvolvimento de aplicações, implementação de camadas de cache, observabilidade e automação. A entrega deve conter o código-fonte e o diagrama da infraestrutura.
 
+💡 Confira todo o <ins>passo a passo</ins>, <ins>desenho da infraestrutura</ins> e <ins>sugestões de melhoria</ins> em [/docs.](https://github.com/0isouza/desafio-devops/tree/main/docs)
+
 # Tarefas
 
 1.  **Criar duas aplicações**
