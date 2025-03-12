@@ -1,4 +1,4 @@
- [![CI/CD - Build & Deploy](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml/badge.svg) Edit 🖊️](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml)
+ [![CI/CD - Build & Deploy](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml/badge.svg)](https://github.com/0isouza/desafio-devops/actions/workflows/deploy.yml)
 
 # **Desafio Prático – DevOps**
 
@@ -44,7 +44,7 @@ Este desafio explora a criatividade e limites da criação de soluções DevOps,
 
 **Estrutura do projeto:** O projeto será estruturado em dois principais diretórios: apps/ e infra/**.** O diretório **apps** conterá as aplicações e seus respectivos arquivos de configuração. A pasta **infra** abrangerá os arquivos para provisionamento da infraestrutura como código e também os deployments das aplicações desenvolvidas e ferramentas de observabilidade. O diretório **.github** terá o workflow definidos para automação CI/CD.
 
-&nbsp;       ![467de202c5bc4a831177f7e036dcc36d.png](/C:/Users/igbarbos/AppData/Local/Programs/Joplin/resources/app.asar/_resources/467de202c5bc4a831177f7e036dcc36d.png)
+&nbsp;       ![467de202c5bc4a831177f7e036dcc36d.png](../_resources/467de202c5bc4a831177f7e036dcc36d.png)
 
 **Aplicações:**
 
