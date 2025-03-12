@@ -1,3 +1,5 @@
+# Deployment do Kube State Metrics
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +21,11 @@ spec:
         ports:
         - containerPort: 8080
           name: http-metrics
+
 ---
+
+# Service do Kube State Metrics
+
 apiVersion: v1
 kind: Service
 metadata:
