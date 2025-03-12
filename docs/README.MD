@@ -2,11 +2,11 @@
 
 A arquitetura apresenta um cluster EKS rodando aplicações, monitorado com Prometheus e Grafana, usando Nginx para rotear tráfego e uma pipeline CI/CD para automatizar deploys, com infraestrutura gerenciada pelo Terraform e armazenado na AWS.
 
-![b9908baa6d6e36d242630c824c122566.png](../_resources/b9908baa6d6e36d242630c824c122566-1.png)
+![b9908baa6d6e36d242630c824c122566.png](../_resources/b9908baa6d6e36d242630c824c122566.png)
 
 # Documentação - Pipeline CI/CD: Atualização de componentes do código/infra
 
-![5a992ddd2b1fe264608b69f2f4346228.png](../_resources/5a992ddd2b1fe264608b69f2f4346228-1.png)
+![5a992ddd2b1fe264608b69f2f4346228.png](../_resources/5a992ddd2b1fe264608b69f2f4346228.png)
 
 # Documentação - Prática das atividades realizadas
 
@@ -79,7 +79,7 @@ app.listen(port, () => {
 
 &nbsp;       Primeira aplicação rodando na porta 5000
 
-&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](../_resources/ed1019887f1124e0206c98bc2b12a8ff-1.png)
+&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](../_resources/ed1019887f1124e0206c98bc2b12a8ff.png)
 
 &nbsp;**Implantação do app mostrador de hora**
 
@@ -89,7 +89,7 @@ app.listen(port, () => {
 
 &nbsp;       Segunda aplicação rodando na porta 5001.
 
-&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](../_resources/d04532cc0a70ab6fe2d376ac333745d1-1.png)
+&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](../_resources/d04532cc0a70ab6fe2d376ac333745d1.png)
 
 &nbsp;
 
@@ -105,7 +105,7 @@ app.listen(port, () => {
 
 Saída do `terraform plan`:
 
-![57af7b2d1415d74c45fab4c38e5f683d.png](../_resources/57af7b2d1415d74c45fab4c38e5f683d-1.png)
+![57af7b2d1415d74c45fab4c38e5f683d.png](../_resources/57af7b2d1415d74c45fab4c38e5f683d.png)
 
 &nbsp;
 
@@ -113,7 +113,7 @@ Conectar ao cluster EKS usando a configuração do kubectl  `aws eks update-kub
 
 Saída do `kubectl apply -f .`
 
-![6eb1e48bff85806a19bcdf4bdb4834ff.png](../_resources/6eb1e48bff85806a19bcdf4bdb4834ff-1.png)
+![6eb1e48bff85806a19bcdf4bdb4834ff.png](../_resources/6eb1e48bff85806a19bcdf4bdb4834ff.png)
 
 &nbsp;
 
@@ -124,11 +124,11 @@ Saída do `kubectl apply -f .`
 
 Configuração das secrets:
 
-**<img src="../_resources/37cc23421c263711831046cefd3ecf98-1.png" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
+**<img src="../_resources/37cc23421c263711831046cefd3ecf98.png" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
 
 Deploys automatizados:
 
-![325beab2c9eeddab914aff3309479891.png](../_resources/325beab2c9eeddab914aff3309479891-1.png)
+![325beab2c9eeddab914aff3309479891.png](../_resources/325beab2c9eeddab914aff3309479891.png)
 
 &nbsp;
 
