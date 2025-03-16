@@ -1,16 +1,40 @@
-# Documentação - Desenho da Infraestrutura
+# Sumário
+
+1\. [Desenho da Infraestrutura](#documentação-desenho-da-infraestrutura)
+
+2\. [Pipeline CI/CD: Atualização de componentes do código/infra](#documentação-pipeline-cicd-atualização-de-componentes-do-códigoinfra)
+
+3\. [Prática das atividades realizadas](#documentação-prática-das-atividades-realizadas)
+
+        3.1 [Passo 1: Desenvolver as aplicações e rodar localmente](#passo-1-desenvolver-as-aplicações-e-rodar-localmente)
+
+        3.2 [Passo 2: Implantar as aplicações usando Docker](#passo-2-implantar-as-aplicações-usando-docker)
+
+        3.4 [Passo 4: Implantar CI/CD para automatizar o deployment](#passo-4-implantar-cicd-para-automatizar-o-deployment)
+
+        3.5 [Passo 5: Deploy da observabilidade usando Prometheus + Grafana](#passo-5-deploy-da-observabilidade-usando-prometheus-+-grafana)
+
+4\. [Opcional: Destruir recursos criados](#opcional-destruir-recursos-criados)
+
+5\. [Sugestões de melhoria](#sugestões-de-melhoria)
+
+6\. [Referências e documentações](#referências-e-documentações)
+
+7\. [Conclusão](#7-conclusão)
+
+# 1\. Desenho da Infraestrutura
 
 A arquitetura apresenta um cluster EKS rodando aplicações, monitorado com Prometheus e Grafana, usando Nginx para rotear tráfego e uma pipeline CI/CD para automatizar deploys, com infraestrutura gerenciada pelo Terraform e armazenado na AWS.
 
-![b9908baa6d6e36d242630c824c122566.png](../_resources/b9908baa6d6e36d242630c824c122566.png)
+![b9908baa6d6e36d242630c824c122566.png](:/496606234af8486b810b583275b09895)
 
-# Documentação - Pipeline CI/CD: Atualização de componentes do código/infra
+# 2\. Pipeline CI/CD: Atualização de componentes do código/infra
 
-![5a992ddd2b1fe264608b69f2f4346228.png](../_resources/5a992ddd2b1fe264608b69f2f4346228.png)
+![5a992ddd2b1fe264608b69f2f4346228.png](:/ab12b119b0654726b3bcdf4d030bed9b)
 
-# Documentação - Prática das atividades realizadas
+# 3\. Prática das atividades realizadas
 
-### Passo 1: Desenvolver as aplicações e rodar localmente:
+### 3.1 Passo 1: Desenvolver as aplicações e rodar localmente:
 
 Dependências e desenvolvimento do app de **healthcheck**:
 
@@ -62,7 +86,7 @@ app.listen(port, () => {
 
 &nbsp;
 
-### Passo 2: Implantar as aplicações usando Docker
+### 3.2 Passo 2: Implantar as aplicações usando Docker
 
 1.  Instalar Docker na máquina na EC2: `sudo apt-get install docker.io`
 2.  Garantir as permissões do Docker para o user atual: `sudo usermod -a -G docker $(whoami)`
@@ -79,7 +103,7 @@ app.listen(port, () => {
 
 &nbsp;       Primeira aplicação rodando na porta 5000
 
-&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](../_resources/ed1019887f1124e0206c98bc2b12a8ff.png)
+&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](:/f6eca13826304b5eba01ed61e0b4aa68)
 
 &nbsp;**Implantação do app mostrador de hora**
 
@@ -89,11 +113,11 @@ app.listen(port, () => {
 
 &nbsp;       Segunda aplicação rodando na porta 5001.
 
-&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](../_resources/d04532cc0a70ab6fe2d376ac333745d1.png)
+&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](:/d9a93a1b5d90444d94ea292a3beb15eb)
 
 &nbsp;
 
-### Passo 3: Subir os containers em um cluster do Kubernetes
+### 3.3 Passo 3: Subir os containers em um cluster do Kubernetes
 
 1.  Preparar credenciais e instalar ferramentas:
     1.  Criar credencial de acesso no IAM e anotar os dados da Acess Key.
@@ -105,7 +129,7 @@ app.listen(port, () => {
 
 Saída do `terraform plan`:
 
-![57af7b2d1415d74c45fab4c38e5f683d.png](../_resources/57af7b2d1415d74c45fab4c38e5f683d.png)
+![57af7b2d1415d74c45fab4c38e5f683d.png](:/5dbe193ed0da40aab1050abb528e5d2c)
 
 &nbsp;
 
@@ -113,26 +137,26 @@ Conectar ao cluster EKS usando a configuração do kubectl  `aws eks update-kub
 
 Saída do `kubectl apply -f .`
 
-![6eb1e48bff85806a19bcdf4bdb4834ff.png](../_resources/6eb1e48bff85806a19bcdf4bdb4834ff.png)
+![6eb1e48bff85806a19bcdf4bdb4834ff.png](:/ea9a97df7c3c467e94e40c472debbf3e)
 
 &nbsp;
 
-**Passo 4: Implantar CI/CD para automatizar o deployment**
+### 3.4 Passo 4: Implantar CI/CD para automatizar o deployment
 
 1.  Configurar as secrets do repositório (AWS Access Key, região, e URIs das imagens no ECR).
 2.  Ajustar o Workflow no GitHub Actions
 
 Configuração das secrets:
 
-**<img src="../_resources/37cc23421c263711831046cefd3ecf98.png" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
+**<img src=":/36bbdfebb65c4b3c898c9c9da0bccc0d" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
 
 Deploys automatizados:
 
-![325beab2c9eeddab914aff3309479891.png](../_resources/325beab2c9eeddab914aff3309479891.png)
+![325beab2c9eeddab914aff3309479891.png](:/e6b6ec01f505481194070033d094673d)
 
 &nbsp;
 
-**Passo 5: Deploy da observabilidade usando Prometheus + Grafana**
+### 3.5 Passo 5: Deploy da observabilidade usando Prometheus + Grafana
 
 1.  Criação dos arquivos de confguração (.yaml) em **/infra/monitoramento**, que farão o deployment e configuração das ferramentas
 2.  Atualização do **ConfigMap** do Nginx, para mapear o redirecionamento e garantir que operarão em **subpath**.
@@ -158,17 +182,17 @@ Arquivos para a configuração:
 
 **Alguns Targets coletadas pelo Prometheus**
 
-![837a403ae5ba00dfda3b11baf0f94991.png](../_resources/837a403ae5ba00dfda3b11baf0f94991.png)
+![837a403ae5ba00dfda3b11baf0f94991.png](:/cae3acc16d9b45d0ad4ca614a6bbc243)
 
 &nbsp;
 
 **Visualização das métricas no Grafana:**
 
-![2648cbcb3394b1d1ce0702a06ab2579b.png](../_resources/2648cbcb3394b1d1ce0702a06ab2579b.png)
+![2648cbcb3394b1d1ce0702a06ab2579b.png](:/ae3e31f8cde04d0b8ca53ce28f68bbd3)
 
 &nbsp;
 
-# Opcional: Destruir recursos criados
+# 4\. Opcional: Destruir recursos criados
 
 Destruir recursos do Kubernetes **antes** de destruir o cluster: `kubectl delete -f .`
 
@@ -176,9 +200,7 @@ Destruir infra criada pelo terraform (cluster): `terraform destroy`
 
 &nbsp;
 
-&nbsp;
-
-# Sugestões de melhoria
+# 5\. Sugestões de melhoria
 
 **1 - Observabilidade das aplicações criadas**
 
@@ -198,7 +220,54 @@ Destruir infra criada pelo terraform (cluster): `terraform destroy`
 
 &nbsp;
 
-# Conclusão
+# 6\. Referências e documentações
+
+  
+Segue abaixo as principais configurações de **proxy, cache** e **deployments de observabilidade**, com referências da documentação oficial:  
+<br/>
+
+### Deployment do Prometheus
+
+- Arquivo: `/infra/monitoramento/prometheus-deployment.yaml`.
+- Documentação: https://prometheus.io/docs/prometheus/latest/command-line/prometheus/
+
+| Flag | Descrição | Valor definido nesse proejto |
+| --- | --- | --- |
+| \--config.file | Caminho do arquivo de configuração yaml | /etc/prometheus/prometheus.yml |
+| \--web.external-url | Configuração para operar em sub-path (devido ao proxy) | /prometheus |
+| \--web.route-prefix | Define o prefixo de rota interna dentro do Prometheus | /   |
+
+&nbsp;
+
+### Deployment do Grafana
+
+- Arquivo: `/infra/monitoramento/grafana-deployment.yaml`.
+- Documentação: https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/ 
+
+| name | Descrição | value (Valor definido nesse projeto) |
+| --- | --- | --- |
+| GF_SERVER_ROOT_URL | Configuração para operar em sub-path (devido ao proxy) | /grafana |
+| GF_USERS_ALLOW_ORG_CREATE | Permitir a criação de organizações por usuários comuns | false |
+
+&nbsp;
+
+### Config map do proxy reverso e cache Nginx ( para as ferramentas de monitoração)
+
+- Arquivo: `/infra/kubernetes/nginx-deployment.yaml`.
+- Documentação: https://nginx.org/en/docs/http/ngx_http_proxy_module.html
+
+| Flag | Descrição | Valor definido nesse projeto |
+| --- | --- | --- |
+| proxy_pass | Redireciona as solicitações para o serviço configurado | http://prometheus-service/; (Prometheus)  <br>http://grafana-service/; (Grafana) |
+| proxy_set_header Host | Mantém o cabeçalho do host original | $host; |
+| proxy_set_header X-Real-IP | Repassa o IP do cliente original | $remote_addr; |
+| proxy_set_header X-Forwarded-For | Mantém a cadeia de IPs do cliente original | $proxy_add_x_forwarded_for; |
+| proxy_set_header X-Forwarded-Proto | Indica se a solicitação original era HTTP ou HTTPS. | $scheme; |
+| proxy_cache_valid | Configuração do cache para as aplicações **/healthcheck** e **/hora** | 200 10s;  <br>200 1m; |
+
+&nbsp;
+
+# 7\. Conclusão
 
 Neste desafio, criei uma infraestrutura automatizada e monitorada, utilizando Kubernetes, CI/CD, Prometheus e Grafana. Desenvolvi e containerizei as aplicações, implantei no EKS da AWS, e configurei uma pipeline CI/CD para automação de deployments. A integração do Prometheus e Grafana permitiu monitorar o desempenho do sistema em tempo real, garantindo a visibilidade e saúde do ambiente.
 
