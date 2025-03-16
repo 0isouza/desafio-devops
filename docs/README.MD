@@ -1,38 +1,38 @@
 # Sumário
 
-1\. [Desenho da Infraestrutura](#1-documentação-desenho-da-infraestrutura)
+1\. [Desenho da Infraestrutura](#documenta%C3%A7%C3%A3o-desenho-da-infraestrutura)
 
-2\. [Pipeline CI/CD: Atualização de componentes do código/infra](#2-documentação-pipeline-cicd-atualização-de-componentes-do-códigoinfra)
+2\. [Pipeline CI/CD: Atualização de componentes do código/infra](#documenta%C3%A7%C3%A3o-pipeline-cicd-atualiza%C3%A7%C3%A3o-de-componentes-do-c%C3%B3digoinfra)
 
-3\. [Prática das atividades realizadas](#3-documentação-prática-das-atividades-realizadas)
+3\. [Prática das atividades realizadas](#documenta%C3%A7%C3%A3o-pr%C3%A1tica-das-atividades-realizadas)
 
-        3.1 [Passo 1: Desenvolver as aplicações e rodar localmente](#31passo-1-desenvolver-as-aplicações-e-rodar-localmente)
+&nbsp;       3.1 [Passo 1: Desenvolver as aplicações e rodar localmente](#passo-1-desenvolver-as-aplica%C3%A7%C3%B5es-e-rodar-localmente)
 
-        3.2 [Passo 2: Implantar as aplicações usando Docker](#32-passo-2-implantar-as-aplicações-usando-docker)
-        
-        3.3 [Passo 3: Subir os containers em um cluster do Kubernetes](#33-passo-3-subir-os-containers-em-um-cluster-do-kubernetes) 
+&nbsp;       3.2 [Passo 2: Implantar as aplicações usando Docker](#passo-2-implantar-as-aplica%C3%A7%C3%B5es-usando-docker)
 
-        3.4 [Passo 4: Implantar CI/CD para automatizar o deployment](#34-passo-4-implantar-cicd-para-automatizar-o-deployment)
+&nbsp;       3.3 [Passo 3: Subir os containers em um cluster do Kubernetes](#33-passo-3-subir-os-containers-em-um-cluster-do-kubernetes)
 
-        3.5 [Passo 5: Deploy da observabilidade usando Prometheus + Grafana](#35-passo-5-deploy-da-observabilidade-usando-prometheus--grafana)
+&nbsp;       3.4 [Passo 4: Implantar CI/CD para automatizar o deployment](#passo-4-implantar-cicd-para-automatizar-o-deployment)
 
-4\. [Opcional: Destruir recursos criados](#4-opcional-destruir-recursos-criados)
+&nbsp;       3.5 [Passo 5: Deploy da observabilidade usando Prometheus + Grafana](#passo-5-deploy-da-observabilidade-usando-prometheus--grafana)
 
-5\. [Sugestões de melhoria](#5-sugestões-de-melhoria)
+4\. [Opcional: Destruir recursos criados](#opcional-destruir-recursos-criados)
 
-6\. [Referências e documentações](#6-referências-e-documentações)
+5\. [Sugestões de melhoria](#sugest%C3%B5es-de-melhoria)
 
-7\. [Conclusão](#7-conclusão)
+6\. [Referências e documentações](#refer%C3%AAncias-e-documenta%C3%A7%C3%B5es)
+
+7\. [Conclusão](#7-conclus%C3%A3o)
 
 # 1\. Desenho da Infraestrutura
 
 A arquitetura apresenta um cluster EKS rodando aplicações, monitorado com Prometheus e Grafana, usando Nginx para rotear tráfego e uma pipeline CI/CD para automatizar deploys, com infraestrutura gerenciada pelo Terraform e armazenado na AWS.
 
-![b9908baa6d6e36d242630c824c122566.png](../_resources/_resources/496606234af8486b810b583275b09895)
+![b9908baa6d6e36d242630c824c122566.png](../_resources/b9908baa6d6e36d242630c824c122566.png)
 
 # 2\. Pipeline CI/CD: Atualização de componentes do código/infra
 
-![5a992ddd2b1fe264608b69f2f4346228.png](../_resources/ab12b119b0654726b3bcdf4d030bed9b)
+![5a992ddd2b1fe264608b69f2f4346228.png](../_resources/5a992ddd2b1fe264608b69f2f4346228.png)
 
 # 3\. Prática das atividades realizadas
 
@@ -105,7 +105,7 @@ app.listen(port, () => {
 
 &nbsp;       Primeira aplicação rodando na porta 5000
 
-&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](../_resources/f6eca13826304b5eba01ed61e0b4aa68)
+&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](../_resources/ed1019887f1124e0206c98bc2b12a8ff.png)
 
 &nbsp;**Implantação do app mostrador de hora**
 
@@ -115,7 +115,7 @@ app.listen(port, () => {
 
 &nbsp;       Segunda aplicação rodando na porta 5001.
 
-&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](../_resources/d9a93a1b5d90444d94ea292a3beb15eb)
+&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](../_resources/d04532cc0a70ab6fe2d376ac333745d1.png)
 
 &nbsp;
 
@@ -131,7 +131,7 @@ app.listen(port, () => {
 
 Saída do `terraform plan`:
 
-![57af7b2d1415d74c45fab4c38e5f683d.png](../_resources/5dbe193ed0da40aab1050abb528e5d2c)
+![57af7b2d1415d74c45fab4c38e5f683d.png](../_resources/57af7b2d1415d74c45fab4c38e5f683d.png)
 
 &nbsp;
 
@@ -139,7 +139,7 @@ Conectar ao cluster EKS usando a configuração do kubectl  `aws eks update-kub
 
 Saída do `kubectl apply -f .`
 
-![6eb1e48bff85806a19bcdf4bdb4834ff.png](../_resources/ea9a97df7c3c467e94e40c472debbf3e)
+![6eb1e48bff85806a19bcdf4bdb4834ff.png](../_resources/6eb1e48bff85806a19bcdf4bdb4834ff.png)
 
 &nbsp;
 
@@ -150,11 +150,11 @@ Saída do `kubectl apply -f .`
 
 Configuração das secrets:
 
-![36bbdfebb65c4b3c898c9c9da0bccc0d.png](../_resources/36bbdfebb65c4b3c898c9c9da0bccc0d)
+**<img src="../_resources/37cc23421c263711831046cefd3ecf98.png" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
 
 Deploys automatizados:
 
-![325beab2c9eeddab914aff3309479891.png](../_resources/e6b6ec01f505481194070033d094673d)
+![325beab2c9eeddab914aff3309479891.png](../_resources/325beab2c9eeddab914aff3309479891.png)
 
 &nbsp;
 
@@ -184,13 +184,13 @@ Arquivos para a configuração:
 
 **Alguns Targets coletadas pelo Prometheus**
 
-![837a403ae5ba00dfda3b11baf0f94991.png](../_resources/cae3acc16d9b45d0ad4ca614a6bbc243)
+![837a403ae5ba00dfda3b11baf0f94991.png](../_resources/837a403ae5ba00dfda3b11baf0f94991.png)
 
 &nbsp;
 
 **Visualização das métricas no Grafana:**
 
-![2648cbcb3394b1d1ce0702a06ab2579b.png](../_resources/ae3e31f8cde04d0b8ca53ce28f68bbd3)
+![2648cbcb3394b1d1ce0702a06ab2579b.png](../_resources/2648cbcb3394b1d1ce0702a06ab2579b.png)
 
 &nbsp;
 
@@ -224,7 +224,6 @@ Destruir infra criada pelo terraform (cluster): `terraform destroy`
 
 # 6\. Referências e documentações
 
-  
 Segue abaixo as principais configurações de **proxy, cache** e **deployments de observabilidade**, com referências da documentação oficial:  
 <br/>
 
@@ -244,7 +243,7 @@ Segue abaixo as principais configurações de **proxy, cache** e **deployments d
 ### Deployment do Grafana
 
 - Arquivo: `/infra/monitoramento/grafana-deployment.yaml`.
-- Documentação: https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/ 
+- Documentação: https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/
 
 | name | Descrição | value (Valor definido nesse projeto) |
 | --- | --- | --- |
