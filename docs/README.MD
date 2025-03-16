@@ -1,24 +1,26 @@
 # Sumário
 
-1\. [Desenho da Infraestrutura](#documentação-desenho-da-infraestrutura)
+1\. [Desenho da Infraestrutura](#1-documentação-desenho-da-infraestrutura)
 
-2\. [Pipeline CI/CD: Atualização de componentes do código/infra](#documentação-pipeline-cicd-atualização-de-componentes-do-códigoinfra)
+2\. [Pipeline CI/CD: Atualização de componentes do código/infra](#2-documentação-pipeline-cicd-atualização-de-componentes-do-códigoinfra)
 
-3\. [Prática das atividades realizadas](#documentação-prática-das-atividades-realizadas)
+3\. [Prática das atividades realizadas](#3-documentação-prática-das-atividades-realizadas)
 
-        3.1 [Passo 1: Desenvolver as aplicações e rodar localmente](#passo-1-desenvolver-as-aplicações-e-rodar-localmente)
+        3.1 [Passo 1: Desenvolver as aplicações e rodar localmente](#31passo-1-desenvolver-as-aplicações-e-rodar-localmente)
 
-        3.2 [Passo 2: Implantar as aplicações usando Docker](#passo-2-implantar-as-aplicações-usando-docker)
+        3.2 [Passo 2: Implantar as aplicações usando Docker](#32-passo-2-implantar-as-aplicações-usando-docker)
+        
+        3.3 [Passo 3: Subir os containers em um cluster do Kubernetes](#33-passo-3-subir-os-containers-em-um-cluster-do-kubernetes) 
 
-        3.4 [Passo 4: Implantar CI/CD para automatizar o deployment](#passo-4-implantar-cicd-para-automatizar-o-deployment)
+        3.4 [Passo 4: Implantar CI/CD para automatizar o deployment](#34-passo-4-implantar-cicd-para-automatizar-o-deployment)
 
-        3.5 [Passo 5: Deploy da observabilidade usando Prometheus + Grafana](#passo-5-deploy-da-observabilidade-usando-prometheus-+-grafana)
+        3.5 [Passo 5: Deploy da observabilidade usando Prometheus + Grafana](#35-passo-5-deploy-da-observabilidade-usando-prometheus-+-grafana)
 
-4\. [Opcional: Destruir recursos criados](#opcional-destruir-recursos-criados)
+4\. [Opcional: Destruir recursos criados](#4-opcional-destruir-recursos-criados)
 
-5\. [Sugestões de melhoria](#sugestões-de-melhoria)
+5\. [Sugestões de melhoria](#5-sugestões-de-melhoria)
 
-6\. [Referências e documentações](#referências-e-documentações)
+6\. [Referências e documentações](#6-referências-e-documentações)
 
 7\. [Conclusão](#7-conclusão)
 
@@ -26,11 +28,11 @@
 
 A arquitetura apresenta um cluster EKS rodando aplicações, monitorado com Prometheus e Grafana, usando Nginx para rotear tráfego e uma pipeline CI/CD para automatizar deploys, com infraestrutura gerenciada pelo Terraform e armazenado na AWS.
 
-![b9908baa6d6e36d242630c824c122566.png](:/496606234af8486b810b583275b09895)
+![b9908baa6d6e36d242630c824c122566.png](../496606234af8486b810b583275b09895)
 
 # 2\. Pipeline CI/CD: Atualização de componentes do código/infra
 
-![5a992ddd2b1fe264608b69f2f4346228.png](:/ab12b119b0654726b3bcdf4d030bed9b)
+![5a992ddd2b1fe264608b69f2f4346228.png](../ab12b119b0654726b3bcdf4d030bed9b)
 
 # 3\. Prática das atividades realizadas
 
@@ -103,7 +105,7 @@ app.listen(port, () => {
 
 &nbsp;       Primeira aplicação rodando na porta 5000
 
-&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](:/f6eca13826304b5eba01ed61e0b4aa68)
+&nbsp;       ![ed1019887f1124e0206c98bc2b12a8ff.png](../f6eca13826304b5eba01ed61e0b4aa68)
 
 &nbsp;**Implantação do app mostrador de hora**
 
@@ -113,7 +115,7 @@ app.listen(port, () => {
 
 &nbsp;       Segunda aplicação rodando na porta 5001.
 
-&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](:/d9a93a1b5d90444d94ea292a3beb15eb)
+&nbsp;       ![d04532cc0a70ab6fe2d376ac333745d1.png](../d9a93a1b5d90444d94ea292a3beb15eb)
 
 &nbsp;
 
@@ -129,7 +131,7 @@ app.listen(port, () => {
 
 Saída do `terraform plan`:
 
-![57af7b2d1415d74c45fab4c38e5f683d.png](:/5dbe193ed0da40aab1050abb528e5d2c)
+![57af7b2d1415d74c45fab4c38e5f683d.png](../5dbe193ed0da40aab1050abb528e5d2c)
 
 &nbsp;
 
@@ -137,7 +139,7 @@ Conectar ao cluster EKS usando a configuração do kubectl  `aws eks update-kub
 
 Saída do `kubectl apply -f .`
 
-![6eb1e48bff85806a19bcdf4bdb4834ff.png](:/ea9a97df7c3c467e94e40c472debbf3e)
+![6eb1e48bff85806a19bcdf4bdb4834ff.png](../ea9a97df7c3c467e94e40c472debbf3e)
 
 &nbsp;
 
@@ -148,11 +150,11 @@ Saída do `kubectl apply -f .`
 
 Configuração das secrets:
 
-**<img src=":/36bbdfebb65c4b3c898c9c9da0bccc0d" alt="37cc23421c263711831046cefd3ecf98.png" width="694" height="303" class="jop-noMdConv">**
+![36bbdfebb65c4b3c898c9c9da0bccc0d.png](../36bbdfebb65c4b3c898c9c9da0bccc0d)
 
 Deploys automatizados:
 
-![325beab2c9eeddab914aff3309479891.png](:/e6b6ec01f505481194070033d094673d)
+![325beab2c9eeddab914aff3309479891.png](../e6b6ec01f505481194070033d094673d)
 
 &nbsp;
 
@@ -182,13 +184,13 @@ Arquivos para a configuração:
 
 **Alguns Targets coletadas pelo Prometheus**
 
-![837a403ae5ba00dfda3b11baf0f94991.png](:/cae3acc16d9b45d0ad4ca614a6bbc243)
+![837a403ae5ba00dfda3b11baf0f94991.png](../cae3acc16d9b45d0ad4ca614a6bbc243)
 
 &nbsp;
 
 **Visualização das métricas no Grafana:**
 
-![2648cbcb3394b1d1ce0702a06ab2579b.png](:/ae3e31f8cde04d0b8ca53ce28f68bbd3)
+![2648cbcb3394b1d1ce0702a06ab2579b.png](../ae3e31f8cde04d0b8ca53ce28f68bbd3)
 
 &nbsp;
 
