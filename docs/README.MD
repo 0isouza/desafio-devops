@@ -1,28 +1,28 @@
 # Sumário
 
-1\. [Desenho da Infraestrutura](#documenta%C3%A7%C3%A3o-desenho-da-infraestrutura)
+1\. [Desenho da Infraestrutura](#1-desenho-da-infraestrutura)
 
-2\. [Pipeline CI/CD: Atualização de componentes do código/infra](#documenta%C3%A7%C3%A3o-pipeline-cicd-atualiza%C3%A7%C3%A3o-de-componentes-do-c%C3%B3digoinfra)
+2\. [Pipeline CI/CD: Atualização de componentes do código/infra](#2-pipeline-cicd-atualização-de-componentes-do-códigoinfra)
 
-3\. [Prática das atividades realizadas](#documenta%C3%A7%C3%A3o-pr%C3%A1tica-das-atividades-realizadas)
+3\. [Prática das atividades realizadas](#3-prática-das-atividades-realizadas)
 
-&nbsp;       3.1 [Passo 1: Desenvolver as aplicações e rodar localmente](#passo-1-desenvolver-as-aplica%C3%A7%C3%B5es-e-rodar-localmente)
+&nbsp;       3.1 [Passo 1: Desenvolver as aplicações e rodar localmente](#31-passo-1-desenvolver-as-aplicações-e-rodar-localmente)
 
-&nbsp;       3.2 [Passo 2: Implantar as aplicações usando Docker](#passo-2-implantar-as-aplica%C3%A7%C3%B5es-usando-docker)
+&nbsp;       3.2 [Passo 2: Implantar as aplicações usando Docker](#32-passo-2-implantar-as-aplicações-usando-docker)
 
 &nbsp;       3.3 [Passo 3: Subir os containers em um cluster do Kubernetes](#33-passo-3-subir-os-containers-em-um-cluster-do-kubernetes)
 
-&nbsp;       3.4 [Passo 4: Implantar CI/CD para automatizar o deployment](#passo-4-implantar-cicd-para-automatizar-o-deployment)
+&nbsp;       3.4 [Passo 4: Implantar CI/CD para automatizar o deployment](#34-passo-4-implantar-cicd-para-automatizar-o-deployment)
 
-&nbsp;       3.5 [Passo 5: Deploy da observabilidade usando Prometheus + Grafana](#passo-5-deploy-da-observabilidade-usando-prometheus--grafana)
+&nbsp;       3.5 [Passo 5: Deploy da observabilidade usando Prometheus + Grafana](#35-passo-5-deploy-da-observabilidade-usando-prometheus--grafana)
 
-4\. [Opcional: Destruir recursos criados](#opcional-destruir-recursos-criados)
+4\. [Opcional: Destruir recursos criados](#4-opcional-destruir-recursos-criados)
 
-5\. [Sugestões de melhoria](#sugest%C3%B5es-de-melhoria)
+5\. [Sugestões de melhoria](#5-sugestões-de-melhoria)
 
-6\. [Referências e documentações](#refer%C3%AAncias-e-documenta%C3%A7%C3%B5es)
+6\. [Referências e documentações](#6-referências-e-documentações)
 
-7\. [Conclusão](#7-conclus%C3%A3o)
+7\. [Conclusão](#7-conclusão)
 
 # 1\. Desenho da Infraestrutura
 
